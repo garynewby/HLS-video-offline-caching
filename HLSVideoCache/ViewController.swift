@@ -6,14 +6,56 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    @IBOutlet private var playerView: UIView!
+    @IBOutlet private var video1: UIButton!
+    @IBOutlet private var video2: UIButton!
+    @IBOutlet private var video3: UIButton!
+    private let player = AVPlayer()
+    private var playerLayer: AVPlayerLayer?
+
+    // Test stream examples
+    private let videos = [
+        "https://moctobpltc-i.akamaihd.net/hls/live/571329/eight/playlist.m3u8",
+        "https://cph-msl.akamaized.net/hls/live/2000341/test/master.m3u8",
+        "https://l2voddemo.akamaized.net/hls/live/644624/l2vc/master.m3u8"
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = playerView.bounds
+        playerView.layer.addSublayer(playerLayer)
+        self.playerLayer = playerLayer
+
+        video1.addAction(UIAction { _ in self.playVideo(at: 0) }, for: .touchUpInside)
+        video2.addAction(UIAction { _ in self.playVideo(at: 1) }, for: .touchUpInside)
+        video3.addAction(UIAction { _ in self.playVideo(at: 2) }, for: .touchUpInside)
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPlayerView(_:)))
+        playerView.addGestureRecognizer(tapGestureRecognizer)
     }
 
+    private func playVideo(at index: Int) {
+        let url = URL(string: self.videos[index])!
+        let videoURL = HLSVideoCache.shared.reverseProxyURL(from: url)!
 
+        let playerItem = AVPlayerItem(url: videoURL)
+        player.replaceCurrentItem(with: playerItem)
+        playerLayer?.frame = playerView.bounds
+        player.play()
+    }
+
+    @objc private func didTapPlayerView(_ sender: UITapGestureRecognizer) {
+        if player.rate > 0 {
+            player.pause()
+        } else {
+            player.play()
+        }
+    }
 }
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,18 +14,13 @@
 		4E4D9AB426D4F95F000B13A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E4D9AB326D4F95F000B13A3 /* Assets.xcassets */; };
 		4E4D9AB726D4F95F000B13A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E4D9AB526D4F95F000B13A3 /* LaunchScreen.storyboard */; };
 		4E4D9AC226D4F95F000B13A3 /* HLSVideoCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D9AC126D4F95F000B13A3 /* HLSVideoCacheTests.swift */; };
-		4E4D9ACD26D4F95F000B13A3 /* HLSVideoCacheUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D9ACC26D4F95F000B13A3 /* HLSVideoCacheUITests.swift */; };
+		4E4D9ADC26D4F99C000B13A3 /* HLSVideoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4D9ADB26D4F99C000B13A3 /* HLSVideoCache.swift */; };
+		4E4D9ADF26D4F9C0000B13A3 /* GDCWebServer in Frameworks */ = {isa = PBXBuildFile; productRef = 4E4D9ADE26D4F9C0000B13A3 /* GDCWebServer */; };
+		4E4D9AE226D4F9D2000B13A3 /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = 4E4D9AE126D4F9D2000B13A3 /* Cache */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		4E4D9ABE26D4F95F000B13A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E4D9A9F26D4F95E000B13A3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4E4D9AA626D4F95E000B13A3;
-			remoteInfo = HLSVideoCache;
-		};
-		4E4D9AC926D4F95F000B13A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E4D9A9F26D4F95E000B13A3 /* Project object */;
 			proxyType = 1;
@@ -46,9 +41,7 @@
 		4E4D9ABD26D4F95F000B13A3 /* HLSVideoCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HLSVideoCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4D9AC126D4F95F000B13A3 /* HLSVideoCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSVideoCacheTests.swift; sourceTree = "<group>"; };
 		4E4D9AC326D4F95F000B13A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E4D9AC826D4F95F000B13A3 /* HLSVideoCacheUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HLSVideoCacheUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E4D9ACC26D4F95F000B13A3 /* HLSVideoCacheUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSVideoCacheUITests.swift; sourceTree = "<group>"; };
-		4E4D9ACE26D4F95F000B13A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E4D9ADB26D4F99C000B13A3 /* HLSVideoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSVideoCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,17 +49,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4D9ADF26D4F9C0000B13A3 /* GDCWebServer in Frameworks */,
+				4E4D9AE226D4F9D2000B13A3 /* Cache in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4E4D9ABA26D4F95F000B13A3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4E4D9AC526D4F95F000B13A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -81,7 +69,6 @@
 			children = (
 				4E4D9AA926D4F95E000B13A3 /* HLSVideoCache */,
 				4E4D9AC026D4F95F000B13A3 /* HLSVideoCacheTests */,
-				4E4D9ACB26D4F95F000B13A3 /* HLSVideoCacheUITests */,
 				4E4D9AA826D4F95E000B13A3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,7 +78,6 @@
 			children = (
 				4E4D9AA726D4F95E000B13A3 /* HLSVideoCache.app */,
 				4E4D9ABD26D4F95F000B13A3 /* HLSVideoCacheTests.xctest */,
-				4E4D9AC826D4F95F000B13A3 /* HLSVideoCacheUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,10 +88,8 @@
 				4E4D9AAA26D4F95E000B13A3 /* AppDelegate.swift */,
 				4E4D9AAC26D4F95E000B13A3 /* SceneDelegate.swift */,
 				4E4D9AAE26D4F95E000B13A3 /* ViewController.swift */,
-				4E4D9AB026D4F95E000B13A3 /* Main.storyboard */,
-				4E4D9AB326D4F95F000B13A3 /* Assets.xcassets */,
-				4E4D9AB526D4F95F000B13A3 /* LaunchScreen.storyboard */,
-				4E4D9AB826D4F95F000B13A3 /* Info.plist */,
+				4E4D9ADB26D4F99C000B13A3 /* HLSVideoCache.swift */,
+				4E4D9ADA26D4F97A000B13A3 /* Supporting */,
 			);
 			path = HLSVideoCache;
 			sourceTree = "<group>";
@@ -119,13 +103,15 @@
 			path = HLSVideoCacheTests;
 			sourceTree = "<group>";
 		};
-		4E4D9ACB26D4F95F000B13A3 /* HLSVideoCacheUITests */ = {
+		4E4D9ADA26D4F97A000B13A3 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				4E4D9ACC26D4F95F000B13A3 /* HLSVideoCacheUITests.swift */,
-				4E4D9ACE26D4F95F000B13A3 /* Info.plist */,
+				4E4D9AB026D4F95E000B13A3 /* Main.storyboard */,
+				4E4D9AB326D4F95F000B13A3 /* Assets.xcassets */,
+				4E4D9AB526D4F95F000B13A3 /* LaunchScreen.storyboard */,
+				4E4D9AB826D4F95F000B13A3 /* Info.plist */,
 			);
-			path = HLSVideoCacheUITests;
+			name = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +130,10 @@
 			dependencies = (
 			);
 			name = HLSVideoCache;
+			packageProductDependencies = (
+				4E4D9ADE26D4F9C0000B13A3 /* GDCWebServer */,
+				4E4D9AE126D4F9D2000B13A3 /* Cache */,
+			);
 			productName = HLSVideoCache;
 			productReference = 4E4D9AA726D4F95E000B13A3 /* HLSVideoCache.app */;
 			productType = "com.apple.product-type.application";
@@ -166,24 +156,6 @@
 			productReference = 4E4D9ABD26D4F95F000B13A3 /* HLSVideoCacheTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4E4D9AC726D4F95F000B13A3 /* HLSVideoCacheUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4E4D9AD726D4F95F000B13A3 /* Build configuration list for PBXNativeTarget "HLSVideoCacheUITests" */;
-			buildPhases = (
-				4E4D9AC426D4F95F000B13A3 /* Sources */,
-				4E4D9AC526D4F95F000B13A3 /* Frameworks */,
-				4E4D9AC626D4F95F000B13A3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4E4D9ACA26D4F95F000B13A3 /* PBXTargetDependency */,
-			);
-			name = HLSVideoCacheUITests;
-			productName = HLSVideoCacheUITests;
-			productReference = 4E4D9AC826D4F95F000B13A3 /* HLSVideoCacheUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -200,10 +172,6 @@
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 4E4D9AA626D4F95E000B13A3;
 					};
-					4E4D9AC726D4F95F000B13A3 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 4E4D9AA626D4F95E000B13A3;
-					};
 				};
 			};
 			buildConfigurationList = 4E4D9AA226D4F95E000B13A3 /* Build configuration list for PBXProject "HLSVideoCache" */;
@@ -215,13 +183,16 @@
 				Base,
 			);
 			mainGroup = 4E4D9A9E26D4F95E000B13A3;
+			packageReferences = (
+				4E4D9ADD26D4F9C0000B13A3 /* XCRemoteSwiftPackageReference "GCDWebServer" */,
+				4E4D9AE026D4F9D2000B13A3 /* XCRemoteSwiftPackageReference "Cache" */,
+			);
 			productRefGroup = 4E4D9AA826D4F95E000B13A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				4E4D9AA626D4F95E000B13A3 /* HLSVideoCache */,
 				4E4D9ABC26D4F95F000B13A3 /* HLSVideoCacheTests */,
-				4E4D9AC726D4F95F000B13A3 /* HLSVideoCacheUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,13 +215,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E4D9AC626D4F95F000B13A3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -258,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4D9ADC26D4F99C000B13A3 /* HLSVideoCache.swift in Sources */,
 				4E4D9AAF26D4F95E000B13A3 /* ViewController.swift in Sources */,
 				4E4D9AAB26D4F95E000B13A3 /* AppDelegate.swift in Sources */,
 				4E4D9AAD26D4F95E000B13A3 /* SceneDelegate.swift in Sources */,
@@ -272,14 +237,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4E4D9AC426D4F95F000B13A3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4E4D9ACD26D4F95F000B13A3 /* HLSVideoCacheUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -287,11 +244,6 @@
 			isa = PBXTargetDependency;
 			target = 4E4D9AA626D4F95E000B13A3 /* HLSVideoCache */;
 			targetProxy = 4E4D9ABE26D4F95F000B13A3 /* PBXContainerItemProxy */;
-		};
-		4E4D9ACA26D4F95F000B13A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4E4D9AA626D4F95E000B13A3 /* HLSVideoCache */;
-			targetProxy = 4E4D9AC926D4F95F000B13A3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,46 +465,6 @@
 			};
 			name = Release;
 		};
-		4E4D9AD826D4F95F000B13A3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RP89MENV25;
-				INFOPLIST_FILE = HLSVideoCacheUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mellowmuse.HLSVideoCacheUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HLSVideoCache;
-			};
-			name = Debug;
-		};
-		4E4D9AD926D4F95F000B13A3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RP89MENV25;
-				INFOPLIST_FILE = HLSVideoCacheUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mellowmuse.HLSVideoCacheUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = HLSVideoCache;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -583,16 +495,39 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E4D9AD726D4F95F000B13A3 /* Build configuration list for PBXNativeTarget "HLSVideoCacheUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4E4D9AD826D4F95F000B13A3 /* Debug */,
-				4E4D9AD926D4F95F000B13A3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E4D9ADD26D4F9C0000B13A3 /* XCRemoteSwiftPackageReference "GCDWebServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yene/GCDWebServer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.4;
+			};
+		};
+		4E4D9AE026D4F9D2000B13A3 /* XCRemoteSwiftPackageReference "Cache" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperoslo/Cache";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E4D9ADE26D4F9C0000B13A3 /* GDCWebServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E4D9ADD26D4F9C0000B13A3 /* XCRemoteSwiftPackageReference "GCDWebServer" */;
+			productName = GDCWebServer;
+		};
+		4E4D9AE126D4F9D2000B13A3 /* Cache */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E4D9AE026D4F9D2000B13A3 /* XCRemoteSwiftPackageReference "Cache" */;
+			productName = Cache;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E4D9A9F26D4F95E000B13A3 /* Project object */;
 }
