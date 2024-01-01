@@ -19,9 +19,8 @@ class ViewController: UIViewController {
 
     // Test stream examples
     private let videos = [
-        "https://moctobpltc-i.akamaihd.net/hls/live/571329/eight/playlist.m3u8",
         "https://cph-msl.akamaized.net/hls/live/2000341/test/master.m3u8",
-        "https://l2voddemo.akamaized.net/hls/live/644624/l2vc/master.m3u8"
+        "https://mtoczko.github.io/hls-test-streams/test-vtt-fmp4-segments/playlist.m3u8"
     ]
 
     override func viewDidLoad() {
@@ -34,7 +33,6 @@ class ViewController: UIViewController {
 
         video1.addAction(UIAction { _ in self.playVideo(at: 0) }, for: .touchUpInside)
         video2.addAction(UIAction { _ in self.playVideo(at: 1) }, for: .touchUpInside)
-        video3.addAction(UIAction { _ in self.playVideo(at: 2) }, for: .touchUpInside)
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapPlayerView(_:)))
         playerView.addGestureRecognizer(tapGestureRecognizer)
