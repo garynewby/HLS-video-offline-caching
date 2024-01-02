@@ -13,11 +13,11 @@ class ViewController: UIViewController {
     @IBOutlet private var playerView: UIView!
     @IBOutlet private var video1: UIButton!
     @IBOutlet private var video2: UIButton!
-    @IBOutlet private var video3: UIButton!
+
     private let player = AVPlayer()
     private var playerLayer: AVPlayerLayer?
 
-    // Test stream examples
+    // Test streams
     private let videos = [
         "https://cph-msl.akamaized.net/hls/live/2000341/test/master.m3u8",
         "https://mtoczko.github.io/hls-test-streams/test-vtt-fmp4-segments/playlist.m3u8"
@@ -41,7 +41,6 @@ class ViewController: UIViewController {
     private func playVideo(at index: Int) {
         let url = URL(string: self.videos[index])!
         let videoURL = HLSVideoCache.shared.reverseProxyURL(from: url)!
-
         let playerItem = AVPlayerItem(url: videoURL)
         player.replaceCurrentItem(with: playerItem)
         playerLayer?.frame = playerView.bounds

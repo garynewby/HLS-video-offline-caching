@@ -74,9 +74,16 @@ final class HLSVideoCache {
     }
 
     private func originURL(from request: GCDWebServerRequest) -> URL? {
-        guard let encodedURLString = request.query?[originURLKey] else { return nil }
-        guard let urlString = encodedURLString.removingPercentEncoding else { return nil }
-        let url = URL(string: urlString)
+        guard let encodedURLString = request.query?[originURLKey],
+              let urlString = encodedURLString.removingPercentEncoding,
+              let url = URL(string: urlString) else {
+            print("Error: bad url")
+            return nil
+        }
+        guard ["m3u8", "ts", "mp4", "m4s", "m4a", "m4v"].contains(url.pathExtension) else {
+            print("Error: unsupported mime type")
+            return nil
+        }
         return url
     }
 
@@ -118,19 +125,18 @@ final class HLSVideoCache {
                 // Cache m3u8 manifest
                 let task = self.urlSession.dataTask(with: originURL) { data, response, _ in
                     guard let data = data,
-                          let response = response
+                          let response = response,
+                          let mimeType = response.mimeType
                     else {
                         return completion(GCDWebServerErrorResponse(statusCode: 500))
                     }
 
-                    let mimeType = response.mimeType!//originURL.absoluteString.contains(".m3u8") ? "audio/x-mpegURL" : response.mimeType!
                     let item = CacheItem(data: data, url: originURL, mimeType: mimeType)
                     self.saveCacheDataItem(item)
 
                     if let playlistData = self.reverseProxyPlaylist(with: item, forOriginURL: originURL) {
-                        completion(GCDWebServerDataResponse(data: playlistData, contentType: item.mimeType))
+                        return completion(GCDWebServerDataResponse(data: playlistData, contentType: item.mimeType))
                     } else {
-                        print("Error: reverseProxyPlaylist nil", item.mimeType, item.url)
                         return completion(GCDWebServerErrorResponse(statusCode: 500))
                     }
                 }
@@ -152,12 +158,12 @@ final class HLSVideoCache {
                     else {
                         return completion(GCDWebServerErrorResponse(statusCode: 500))
                     }
-                    
-                    completion(GCDWebServerDataResponse(data: data, contentType: contentType))
-                    
+
                     let mimeType = originURL.absoluteString.contains(".mp4") ? "video/mp4" : response.mimeType!
                     let item = CacheItem(data: data, url: originURL, mimeType: mimeType)
                     self.saveCacheDataItem(item)
+
+                    return completion(GCDWebServerDataResponse(data: data, contentType: contentType))
                 }
 
                 task.resume()
@@ -203,11 +209,6 @@ final class HLSVideoCache {
     }
 
     private func absoluteURL(from line: String, forOriginURL originURL: URL) -> URL? {
-        guard ["m3u8", "ts", "mp4"].contains(originURL.pathExtension) else {
-            print("Error: unsupported mime type")
-            return nil
-        }
-
         if line.hasPrefix("http://") || line.hasPrefix("https://") {
             return URL(string: line)
         }
