@@ -31,6 +31,7 @@ final class HLSVideoCache {
     private let cache: Storage<String, CacheItem>
     private let originURLKey = "__hls_origin_url"
     private let port: UInt = 1234
+    private let fileManager = FileManager.default
 
     private init() {
         self.webServer = GCDWebServer()
@@ -38,22 +39,23 @@ final class HLSVideoCache {
 
         // 200 mb disk cache
         let diskConfig = DiskConfig(name: "HLS_Video", expiry: .never, maxSize: 200 * 1024 * 1024)
-        
+
         // 25 objects in memory
         let memoryConfig = MemoryConfig(expiry: .never, countLimit: 25, totalCostLimit: 25)
-        
+
         guard let storage = try? Storage<String, CacheItem>(
             diskConfig: diskConfig,
             memoryConfig: memoryConfig,
+            fileManager: fileManager,
             transformer: TransformerFactory.forCodable(ofType: CacheItem.self)
         ) else {
             fatalError("HLSVideoCache: unable to create cache")
         }
-        
+
         self.cache = storage
 
-        let documentDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        print("documentDirectory", documentDirectory?.path ?? "--")
+        // Cached segments directory
+        print("cacheDirectory:", cacheDirectory?.path ?? "--")
 
         addPlaylistHandler()
         start()
@@ -81,7 +83,7 @@ final class HLSVideoCache {
             return nil
         }
         guard ["m3u8", "ts", "mp4", "m4s", "m4a", "m4v"].contains(url.pathExtension) else {
-            print("Error: unsupported mime type")
+            print("Error: unsupported mime type:", url.pathExtension, "for:", url.absoluteString)
             return nil
         }
         return url
@@ -103,6 +105,11 @@ final class HLSVideoCache {
         components.queryItems = (components.queryItems ?? []) + [originURLQueryItem]
 
         return components.url
+    }
+
+    var cacheDirectory: URL? {
+        try? fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appendingPathComponent("HLS_Video")
     }
 
     // MARK: - Request Handler
@@ -242,7 +249,7 @@ final class HLSVideoCache {
         let key = cacheKey(for: item.url)
         try? cache.setObject(item, forKey: key)
     }
-    
+
     private func cacheKey(for resourceURL: URL) -> String {
         // Hash key to avoid file name too long errors
         SHA256
