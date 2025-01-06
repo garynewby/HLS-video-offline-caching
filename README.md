@@ -1,4 +1,16 @@
 # HLS video offline caching
-SwiftUI iOS example of caching HLS video m3u8 playlists, with ts or mp4 segments, to disk for offline playback, using an embedded reverse proxy server. 
+Swift/iOS caching of HLS video m3u8 playlists to disk for offline playback. Supports ts or mp4 segments. Uses an embedded reverse proxy server. Example in SwiftUI.
 
 <img src="https://github.com/user-attachments/assets/746532ae-80b5-410c-ba30-6967ab7e921c" width="290">
+
+### Requirements
+
+Swift 5
+
+## Author
+
+Gary Newby
+
+## License
+
+Licensed under the MIT License.
