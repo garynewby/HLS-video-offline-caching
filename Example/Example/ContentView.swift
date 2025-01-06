@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import HLSVideoCache
 
 struct ContentView: View {
 

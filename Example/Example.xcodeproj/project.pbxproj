@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E773E702CF4ADD300A0FBED /* HLSVideoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E773E6F2CF4ADD300A0FBED /* HLSVideoCache.swift */; };
-		4E773E732CF4AE0F00A0FBED /* GCDWebServer in Frameworks */ = {isa = PBXBuildFile; productRef = 4E773E722CF4AE0F00A0FBED /* GCDWebServer */; };
-		4E773E762CF4AE1F00A0FBED /* Cache in Frameworks */ = {isa = PBXBuildFile; productRef = 4E773E752CF4AE1F00A0FBED /* Cache */; };
+		4E5A00EC2D2BE85200908E0B /* HLSVideoCache in Frameworks */ = {isa = PBXBuildFile; productRef = 4E5A00EB2D2BE85200908E0B /* HLSVideoCache */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4E773E552CF4AA0000A0FBED /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E773E6F2CF4ADD300A0FBED /* HLSVideoCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSVideoCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -30,8 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E773E732CF4AE0F00A0FBED /* GCDWebServer in Frameworks */,
-				4E773E762CF4AE1F00A0FBED /* Cache in Frameworks */,
+				4E5A00EC2D2BE85200908E0B /* HLSVideoCache in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +37,6 @@
 		4E773E4C2CF4AA0000A0FBED = {
 			isa = PBXGroup;
 			children = (
-				4E773E6F2CF4ADD300A0FBED /* HLSVideoCache.swift */,
 				4E773E572CF4AA0000A0FBED /* Example */,
 				4E773E562CF4AA0000A0FBED /* Products */,
 			);
@@ -75,8 +70,7 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				4E773E722CF4AE0F00A0FBED /* GCDWebServer */,
-				4E773E752CF4AE1F00A0FBED /* Cache */,
+				4E5A00EB2D2BE85200908E0B /* HLSVideoCache */,
 			);
 			productName = Example;
 			productReference = 4E773E552CF4AA0000A0FBED /* Example.app */;
@@ -107,8 +101,7 @@
 			mainGroup = 4E773E4C2CF4AA0000A0FBED;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				4E773E712CF4AE0F00A0FBED /* XCRemoteSwiftPackageReference "GCDWebServer" */,
-				4E773E742CF4AE1F00A0FBED /* XCRemoteSwiftPackageReference "Cache" */,
+				4E5A00EA2D2BE85200908E0B /* XCLocalSwiftPackageReference "../../HLS-video-offline-caching" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4E773E562CF4AA0000A0FBED /* Products */;
@@ -135,7 +128,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E773E702CF4ADD300A0FBED /* HLSVideoCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,35 +336,17 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		4E773E712CF4AE0F00A0FBED /* XCRemoteSwiftPackageReference "GCDWebServer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yene/GCDWebServer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.5.7;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		4E5A00EA2D2BE85200908E0B /* XCLocalSwiftPackageReference "../../HLS-video-offline-caching" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../HLS-video-offline-caching";
 		};
-		4E773E742CF4AE1F00A0FBED /* XCRemoteSwiftPackageReference "Cache" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hyperoslo/Cache";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4E773E722CF4AE0F00A0FBED /* GCDWebServer */ = {
+		4E5A00EB2D2BE85200908E0B /* HLSVideoCache */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4E773E712CF4AE0F00A0FBED /* XCRemoteSwiftPackageReference "GCDWebServer" */;
-			productName = GCDWebServer;
-		};
-		4E773E752CF4AE1F00A0FBED /* Cache */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4E773E742CF4AE1F00A0FBED /* XCRemoteSwiftPackageReference "Cache" */;
-			productName = Cache;
+			productName = HLSVideoCache;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -4,12 +4,9 @@
 //
 //  Created by Gary Newby on 19/08/2021.
 //
-// m3u8 playlist parsing based on: https://github.com/StyleShare/HLSCachingReverseProxyServer
 // HLS Video caching using and embedded reverse proxy web server
-// Swapped PINCache for Cache
-// Added ability to save m3u8 manifest to disk for offline use
-// Fix keys too long for filenames error by hashing
-// Support segmented mp4 as well as ts
+// Support for segmented mp4 and ts
+// m3u8 playlist parsing based on: https://github.com/StyleShare/HLSCachingReverseProxyServer
 
 import Foundation
 import GCDWebServer
@@ -22,26 +19,44 @@ struct CacheItem: Codable {
     let mimeType: String
 }
 
-final class HLSVideoCache {
+public final class HLSVideoCache {
 
-    static let shared = HLSVideoCache()
+    public static let shared = HLSVideoCache()
 
     private let webServer: GCDWebServer
     private let urlSession: URLSession
+    private let port: UInt
+    private let originURLKey: String
+    private let cacheDirectoryName: String
     private let cache: Storage<String, CacheItem>
-    private let originURLKey = "__hls_origin_url"
-    private let port: UInt = 1234
-    private let fileManager = FileManager.default
+    private let cacheSizeMb: UInt
+    private let fileManager: FileManager
+    private let countLimit: UInt
+    private let totalCostLimit: UInt
 
-    private init() {
-        self.webServer = GCDWebServer()
-        self.urlSession = URLSession.shared
+    private init(
+        webServer: GCDWebServer = GCDWebServer(),
+        urlSession: URLSession = .shared,
+        port: UInt = 1234,
+        originURLKey: String = "__hls_origin_url",
+        cacheDirectoryName: String = "HLS_Video",
+        cacheSizeMb: UInt = 200,
+        countLimit: UInt = 25,
+        totalCostLimit: UInt = 25,
+        fileManager: FileManager = .default
+    ) {
+        self.webServer = webServer
+        self.urlSession = urlSession
+        self.port = port
+        self.originURLKey = originURLKey
+        self.cacheDirectoryName = cacheDirectoryName
+        self.cacheSizeMb = cacheSizeMb
+        self.fileManager = fileManager
+        self.countLimit = countLimit
+        self.totalCostLimit = totalCostLimit
 
-        // 200 mb disk cache
-        let diskConfig = DiskConfig(name: "HLS_Video", expiry: .never, maxSize: 200 * 1024 * 1024)
-
-        // 25 objects in memory
-        let memoryConfig = MemoryConfig(expiry: .never, countLimit: 25, totalCostLimit: 25)
+        let diskConfig = DiskConfig(name: "HLS_Video", expiry: .never, maxSize: cacheSizeMb * 1024 * 1024)
+        let memoryConfig = MemoryConfig(expiry: .never, countLimit: countLimit, totalCostLimit: totalCostLimit)
 
         guard let storage = try? Storage<String, CacheItem>(
             diskConfig: diskConfig,
@@ -91,11 +106,11 @@ final class HLSVideoCache {
 
     // MARK: - Public functions
 
-    func clearCache() throws {
+    public func clearCache() throws {
         try cache.removeAll()
     }
 
-    func reverseProxyURL(from originURL: URL) -> URL? {
+    public func reverseProxyURL(from originURL: URL) -> URL? {
         guard var components = URLComponents(url: originURL, resolvingAgainstBaseURL: false) else { return nil }
         components.scheme = "http"
         components.host = "127.0.0.1"
